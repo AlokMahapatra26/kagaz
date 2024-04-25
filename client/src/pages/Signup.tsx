@@ -43,7 +43,7 @@ function Signup() {
     }catch (error:any) {
       setLoading(false)
       setError(error.message)
-      console.log("erro")
+      
     }
   }
 
