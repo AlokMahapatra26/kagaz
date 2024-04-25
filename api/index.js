@@ -21,13 +21,20 @@ app.use('/api/user' , userRouter);
 app.use('/api/auth' , authRouter)
 
 //routes
-app.get("/" ,(req,res)=>{
-    res.status(200).json({
-        "message" : "hello from home"
-    })
+app.get("/helloworld" ,(req,res)=>{
+    res.status(200).send("Hello world")
 })
 
-
+//error handling middleware
+app.use((err , req , res , next)=>{
+    const statusCode = err.statusCode || 500;
+    const message = err.message || "internal server error";
+    return res.status(statusCode).json({
+        success : "false",
+        statusCode,
+        message
+    })
+})
 
 //listening on port
 app.listen(4000 , ()=>{
