@@ -18,7 +18,11 @@ const userSchema = new mongoose.Schema({
     createdAt:{
         type:Date,
         default : Date.now
-    }
+    },
+    avatar : {
+        type : String,
+        default : "https://i.pinimg.com/originals/4d/2e/0a/4d2e0a694015f3d2f840873d01aa5fd4.jpg" 
+    },
 });
 
 const User = mongoose.model('User' , userSchema);

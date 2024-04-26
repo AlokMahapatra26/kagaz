@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { signInStart , signInSuccess , signInFailure } from "../redux/user/userSlice.ts";
+import OAuth from "../components/OAuth.tsx";
 
 
 function Signin() {
@@ -74,11 +75,14 @@ function Signin() {
           </label>
           <input type="password" onChange={handleChange} placeholder="password" className="input input-bordered" id='password' required />
           <label className="label">
-            <a href="#" className="label-text-alt link link-hover" onClick={()=>{navigate('/sign-in')}}>Create Account</a>
+            <a href="#" className="label-text-alt link link-hover" onClick={()=>{navigate('/sign-up')}}>Create Account</a>
           </label>
         </div>
         <div className="form-control mt-6">
           <button disabled={loading} className="btn btn-primary">{loading ? 'Loading...' : 'Signin'}</button>
+        </div>
+        <div>
+          <OAuth/>
         </div>
       </form>
      

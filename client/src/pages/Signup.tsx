@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
+import OAuth from "../components/OAuth";
 
 function Signup() {
 
@@ -80,6 +81,9 @@ function Signup() {
         </div>
         <div className="form-control mt-6">
           <button disabled={loading} className="btn btn-primary">{loading ? 'Loading...' : 'Signup'}</button>
+        </div>
+        <div>
+          <OAuth/>
         </div>
       </form>
      
