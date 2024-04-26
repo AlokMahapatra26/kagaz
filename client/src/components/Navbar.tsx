@@ -6,6 +6,7 @@ function Navbar() {
 
 
    const navigate = useNavigate(); 
+   //@ts-ignore
    const {currentUser} = useSelector(state => state.user)
 
   return (
