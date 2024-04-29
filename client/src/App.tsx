@@ -6,6 +6,7 @@ import Signup from './pages/Signup'
 import Write from './pages/Write'
 import PrivateRoute from "./components/PrivateRoute"
 import Profile from "./pages/Profile"
+import UpdateProfile from "./pages/UpdateProfile"
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route element={<PrivateRoute/>}>
             <Route path="/profile" element={<Profile/>}/>
             <Route path="/write" element={<Write/>}/>
+            <Route path="/update-profile" element={<UpdateProfile/>}/>
           </Route>
           
         </Routes>

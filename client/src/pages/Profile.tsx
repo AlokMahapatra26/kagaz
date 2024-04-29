@@ -1,12 +1,28 @@
 import { useSelector } from "react-redux"
 import { FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { CiSquarePlus } from "react-icons/ci";
+// import { CiSquarePlus } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
+
+
 
 function Profile() {
 
   const navigate = useNavigate();
+
+  const handleSignOut = async() => {
+    try{
+      const res = await fetch('/api/auth/signout');
+      const data = await res.json();
+      if(data.success === false){
+        return;
+      }
+    }catch(e){
+      
+    }
+  }
+
+  // const navigate = useNavigate();
 
   //@ts-ignore
   const {currentUser} = useSelector(state => state.user)
@@ -35,8 +51,8 @@ function Profile() {
   <summary className="m-1 btn">More Options</summary>
   <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
     <li className="text-red-500"><a>Delete Account</a></li>
-    <li><a>Update Details</a></li>
-    <li><a>Sign out</a></li>
+    <li onClick={()=>{navigate('/update-profile')}}><a>Update Details</a></li>
+    <li onClick={handleSignOut}><a>Sign out</a></li>
   </ul>
 </details>
 
