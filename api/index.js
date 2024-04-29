@@ -4,7 +4,8 @@ import mongoose from 'mongoose'
 const app = express();
 // import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js'
-
+import userRouter from './routes/user.route.js'
+import cookieParser from 'cookie-parser';
 
 //connecting database
 mongoose.connect("mongodb://localhost:27017/kagaz").then(()=>{
@@ -16,8 +17,11 @@ mongoose.connect("mongodb://localhost:27017/kagaz").then(()=>{
 //parsing body
 app.use(express.json())
 
+//parcing cookie
+app.use(cookieParser());
+
 //routes
-// app.use('/api/user' , userRouter);
+app.use('/api/user' , userRouter);
 app.use('/api/auth' , authRouter)
 
 //routes
