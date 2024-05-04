@@ -1,9 +1,10 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 // import { CiSquarePlus } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-
+import { UseDispatch } from "react-redux";
+import { deleteUserFailure , deleteUserSuccess , deleteUserStart} from "../redux/user/userSlice";
 
 
 function Profile() {
@@ -11,6 +12,7 @@ function Profile() {
   
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSignOut = async() => {
     try{
@@ -21,6 +23,26 @@ function Profile() {
       }
     }catch(e){
       
+    }
+  }
+
+  const handleDeleteUser = async() => {
+    try{
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}` , {
+        method : 'DELETE',
+      });
+      const data = await res.json();
+      if(data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+
+      dispatch(deleteUserSuccess(data));
+
+    }catch(e:any){
+      dispatch(deleteUserFailure(e.message))
+      alert("Something went wrong")
     }
   }
 
@@ -52,7 +74,7 @@ function Profile() {
     <details className="dropdown inline">
   <summary className="m-1 btn">More Options</summary>
   <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-    <li className="text-red-500"><a>Delete Account</a></li>
+    <li onClick={handleDeleteUser} className="text-red-500"><a>Delete Account</a></li>
     <li onClick={()=>{navigate('/update-profile')}}><a>Update Details</a></li>
     <li onClick={handleSignOut}><a>Sign out</a></li>
   </ul>
