@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 function Profile() {
 
+  
+
   const navigate = useNavigate();
 
   const handleSignOut = async() => {
@@ -35,8 +37,8 @@ function Profile() {
     
     <form action="">
    
-    <img src={currentUser.avatar} alt="" className="rounded-full mx-auto m-4"/>
-    <label className="input input-bordered flex items-center gap-2">
+    <img src={currentUser.avatar} alt="" className="rounded-full mx-auto m-4 w-16"/>
+    <label className="input input-bordered flex items-center gap-2 ">
     <FaUser />
 <input type="text" className="grow " placeholder={currentUser.username} disabled />
 </label>
