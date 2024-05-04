@@ -34,7 +34,7 @@ function Navbar() {
           </a>
         </li>
         <li onClick={()=>navigate('/write')}><a>Write</a></li>
-        <li onClick={()=>navigate('/sign-up')}><a>Logout</a></li>
+        {/* <li onClick={()=>navigate('/sign-up')}><a>Logout</a></li> */}
       </ul>
     </div>
     ) : <li className="btn" onClick={()=>{navigate('/sign-in')}}>Signin</li>

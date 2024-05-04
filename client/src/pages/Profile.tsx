@@ -4,7 +4,7 @@ import { MdEmail } from "react-icons/md";
 // import { CiSquarePlus } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { UseDispatch } from "react-redux";
-import { deleteUserFailure , deleteUserSuccess , deleteUserStart} from "../redux/user/userSlice";
+import { deleteUserFailure , deleteUserSuccess , deleteUserStart, signOutUserStart, signOutUserSuccess, signOutUserFailure} from "../redux/user/userSlice";
 
 
 function Profile() {
@@ -16,13 +16,16 @@ function Profile() {
 
   const handleSignOut = async() => {
     try{
+      dispatch(signOutUserStart());
       const res = await fetch('/api/auth/signout');
       const data = await res.json();
       if(data.success === false){
+        dispatch(deleteUserFailure(data.message))
         return;
       }
-    }catch(e){
-      
+      dispatch(signOutUserSuccess(data.success))
+    }catch(e:any){
+      dispatch(signOutUserFailure(e.message))
     }
   }
 
